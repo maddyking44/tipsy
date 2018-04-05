@@ -22,29 +22,22 @@ server.post('/displayPage', function (req, res) {
 //get data from form.html and put each part into variables
     var data = req.body 
     person = {
-        name: data.firstname,
-        tag: data.tagline,
+        firstname: data.firstname,
+        tagline: data.tagline,
+        profilepic: data.profilepic
         // email: data.email 
     }
-    
-    //need to do something with email
-    // var profilepic = data.profilepic
-    console.log(data)
-    console.log("hello")
     console.log(person)
-    console.log(person.name)
-    // console.log(name)
+    // var profilepic = data.profilepic
     res.redirect('/displayPage')
 })
 
-//attaches the displayPage.hbs file to the /displayPage url
+//render the displayPage
 server.get('/displayPage', function (req, res) {
-    console.log("hello maddy")
-    console.log(person)
-    console.log(person.name)
     res.render('displayPage', person)
 })
 
+//put language data in db
 
 
 
@@ -53,35 +46,6 @@ server.get('/displayPage', function (req, res) {
 
 
 
-
-
-
-
-// var userOne = []
-
-// function profileObj(){
-//     var userOne = {
-//         firstname: (document.getElementById("firstname").value),
-//         lastname: (document.getElementById("lastname").value),
-//         tagline: (document.getElementById("tagline").value),
-//         email: (document.getElementById("email").value),
-//         profilepic: (document.getElementById("profilepic").value)
-//     }
-//     console.log(userOne)
-// }
-
-// var userTwo = {
-//     firstname: "Sam",
-//     lastname: "Jae",
-//     tagline: "fish soup",
-//     email: "sam.j@hotmail.com"
-// }
-
-// function printDisplay () {
-// document.getElementById("displayName").innerHTML(userOne.firstname);
-// }
-
-// printDisplay()
 
 
 module.exports = server
