@@ -4,6 +4,8 @@ var server = express()
 var hbs = require('express-handlebars')
 server.use(express.static('public'))
 server.use(bodyParser.urlencoded({ extended: false }))
+var config = require('./knexfile').development
+var db = require('knex')(config)
 var person = []
 
 //get handlebars working
@@ -13,7 +15,7 @@ var hbsConfig = {
 server.engine('hbs', hbs(hbsConfig)) 
 server.set('view engine', 'hbs')
 
-//render the form
+//render the formgit 
 server.get('/', function (req, res) {
    res.render('form')
 })
@@ -38,7 +40,11 @@ server.get('/displayPage', function (req, res) {
 })
 
 //put language data in db
+server.post('/displayPage', function (req, res) {
+    var formData = req.body
 
+
+})
 
 
 
