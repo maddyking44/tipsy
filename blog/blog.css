@@ -1,0 +1,88 @@
+body {
+	font-size: 85%;
+	background-color:  #F7F8E0;
+  text-decoration-color: #7E7C74;
+}
+h1 {
+  font-size: 30px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  word-spacing: 10px;
+  text-shadow: 5px 4px #FFFFFF;
+  font-family:  "Verdana", monospace;
+  text-align: center;
+}
+h2 {
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-family: "Verdana", monospace;
+  text-align: center;
+}
+h3 {
+  font-size: 18px;
+  text-decoration: underline;
+  text-align: center;
+  font-family: "Verdana", monospace;
+	margin-top: 20px;
+}
+p {
+  font-size: 15px;
+  font-family:  "Verdana", monospace;
+  text-align: justify;
+  letter-spacing: 2px;
+  line-height: 30px;
+	overflow: auto;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+#homelink {
+  text-align: center;
+	font-family: "Verdana", monospace;
+	color: #020202;
+}
+ul {
+		list-style-type: disc;
+    font-size: 15px;
+    font-family:  "Verdana", monospace;
+    text-align: justify;
+    letter-spacing: 2px;
+    line-height: 30px;
+    overflow: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+ol {
+  font-size: 15px;
+  font-family:  "Verdana", monospace;
+  text-align: justify;
+  letter-spacing: 2px;
+  line-height: 30px;
+  overflow: auto;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.container {
+	width: 100%;
+	max-width: 95%;
+	margin: 20px;
+}
+
+.rotate {
+	-ms-transform: rotate(90deg); /* IE 9 */
+	-webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+	transform: rotate(90deg);
+}
+.u-full-width {
+	float: none;
+}
+
+.u-max-full-width {
+	float: none;
+}
+@media (min-width: 550px) {
+	.three-columns {
+		margin-left: 0px;
+		width: 25%;
+	}
+}
