@@ -40,11 +40,11 @@ server.get('/displayPage', function (req, res) {
 })
 
 //put language data in db
-server.post('/displayPage', function (req, res) {
-    var formData = req.body
+// server.post('/displayPage', function (req, res) {
+//     var formData = req.body
 
-
-})
+//     res.redirect('/')
+// })
 
 
 
