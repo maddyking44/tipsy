@@ -8,10 +8,17 @@ function getProfileByID (id) {
     .select().first()
 }
 
-function getProfileByQuery (query) {
+function getProfileByQuery (id) {
     // const conn = testDb || db
     return db("profiles")
-    .where ("id", query.id)
+    .where ("id", id.id)
+    .select().first()
+}
+
+function getProfileByTrickyID (id) {
+    // const conn = testDb || db
+    return db("profiles")
+    .where("id", id)
     .select().first()
 }
 
@@ -31,16 +38,24 @@ function insertLanguage (languageArray) {
     }
 }
 
-function getMatches (user, profile) {
+function pushMatch (user, profile) {
     return db("matches")
-        .insert({user_id: user, match_id: profile})
-        
+        .insert({"user_id": user, "match_id": profile})
+}
+
+function checkMatches (user, profile) {
+    return db("matches")
+    .where("match_id", "like", user )
+    .where("user_id", "like", profile)
 
 }
 
 module.exports = {
     getProfileByID,
     getProfileByQuery,
-    insertLanguage
+    getProfileByTrickyID,
+    insertLanguage,
+    pushMatch,
+    checkMatches
 }
 

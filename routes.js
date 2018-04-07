@@ -66,19 +66,40 @@ router.get("/profiles/:id/view", function (req, res) {
     })
 })
 
+
+
 //user can match with other users
 router.post("/profiles/:id/view", function (req, res) {
     var id = req.params.id
+
+    // gets number from query in url
     var query = req.query
-    console.log({id})
-    console.log({query})
-    dab.getProfileByID(id)
-    .insert()
-    .then(subject => {
-        dab.getMatches(id, query)
+    var queryArray = Object.entries(query)
+    var queryItem = queryArray[0][0]
+    var queryPieces = queryItem.split("")
+    var queryNum = queryPieces[0]
+   
+        dab.getProfileByTrickyID(id)
+        .then(subject => {
+            dab.pushMatch(id, queryNum)
+            .then(thing => {
+                dab.checkMatches(id, queryNum)
+                .then(success => {
+                    if (typeof (success) === "osbject")
+                    console.log("It's a match")
+                    else console.log("Rwer rwaor")
+
+
+                    res.redirect("/profiles/" + req.params.id)
+                                })
+        
+
+                    })
+                       })
+        
     })
-    res.redirect("/profiles/:id")
-})
+
+
 
 //user can view own profile
 router.get("/user/:id", function (req, res) {
