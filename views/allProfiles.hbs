@@ -1,0 +1,18 @@
+
+
+    <head>    
+        <title>TIPSY</title>
+        <meta charset="UTF-8"/>
+        
+ </head>
+    <body>
+        {{#each allProfiles}}
+    <div><a href="/profiles/{{id}}/view">{{firstname}}</a></div>
+     
+    <div><a href="/profiles/{{id}}/view">{{tagline}}</a></div>
+    
+    <div><a href="/profiles/{{id}}/view"><img src="{{profilepic}}" width="200px"></a></div>
+     {{/each}}
+    
+    </body>
+    </html>
