@@ -85,20 +85,25 @@ router.post("/profiles/:id/view", function (req, res) {
             .then(thing => {
                 dab.checkMatches(id, queryNum)
                 .then(success => {
-                    if (typeof (success) === "osbject")
-                    console.log("It's a match")
+                    console.log(id + "is user")
+                    console.log(queryNum + "is potential match")
+                    console.log(success)
+                    console.log(typeof success)
+                    if (typeof (success) === "object"){
+                        res.redirect("/success")}
                     else console.log("Rwer rwaor")
-
-
                     res.redirect("/profiles/" + req.params.id)
-                                })
+                     })
         
-
-                    })
-                       })
+              })
+        })
         
     })
 
+//success page
+router.get("/success/", function (req, res) {
+    res.render("success")
+})
 
 
 //user can view own profile
