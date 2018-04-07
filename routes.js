@@ -11,7 +11,6 @@ router.get('/', function (req, res) {
     .where("id", 1)
     .select().first()
     .then(user1 => {
-        console.log(user1)
         res.render('login', user1)
     })
 
@@ -85,10 +84,6 @@ router.post("/profiles/:id/view", function (req, res) {
             .then(thing => {
                 dab.checkMatches(id, queryNum)
                 .then(success => {
-                    console.log(id + "is user")
-                    console.log(queryNum + "is potential match")
-                    console.log(success)
-                    console.log(typeof success)
                     if (success[0]){
                         res.redirect("/success")}
                     else res.redirect("/profiles/" + req.params.id)
@@ -108,7 +103,6 @@ router.get("/success/", function (req, res) {
 router.get("/user/:id", function (req, res) {
     dab.getProfileByID(req.params.id)
         .then(user => {
-            console.log(user)
             res.render("user", user)
         })
 })
@@ -117,7 +111,6 @@ router.get("/user/:id", function (req, res) {
 router.get('/user/:id/edit', function (req, res) {
    dab.getProfileByID(req.params.id)
    .then(user => {
-       console.log(user)
        res.render('form', user)
    })
 })
