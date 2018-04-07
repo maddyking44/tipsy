@@ -6,11 +6,11 @@
     <body>
         <form name="profile" method="post" action="/displayPage"  accept-charset="UTF-8" >
             First name:
-        <input name="firstname" type="text"><br>
+        <input name="firstname" type="text" placeholder="{{firstname}}"><br>
             Last name:
-        <input name="lastname" type="text"><br>
+        <input name="lastname" type="text" placeholder="{{lastname}}"><br>
             Tag line:  
-        <input name="tagline" type="text" ><br>
+        <input name="tagline" type="text" placeholder="{{tagline}}" ><br>
             Language:
             {{!-- fix this --}}
         {{!-- <select name="languages">
@@ -19,10 +19,10 @@
             <input type= "radio" value="te_reo">Te reo Maori
         </select><br> --}}
             Email:
-        <input name="email" type="text"><br>
+        <input name="email" type="text" placeholder="{{email}}"><br>
             Profile picture URL: 
-        <input id="profilepic" type="text"><br>
-        <input type="submit" onClick="" value="Let's go!"/>
+        <input name="profilepic" type="text" placeholder="{{profilepic}}"><br>
+        <input type="submit" onClick="" value="You are great!"/>
         </form>
 
     </body>

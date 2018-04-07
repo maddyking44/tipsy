@@ -1,0 +1,23 @@
+    <head>    
+        <title>TIPSY</title>
+        <meta charset="UTF-8"/>
+    </head>
+
+    <body>
+    <center><h1> TIPSY </h1><br>
+    <h3>{{profile.firstname}} {{profile.lastname}}</h3> 
+    <h3>{{profile.tagline}}</h3> 
+    <img src="{{profile.profilepic}}" width = "400px">
+    <br>
+    <br>
+    <form action='/profiles/{{id}}/view?{{profile.id}}/' method='post'>
+        <input type='submit' value="MATCH!"> 
+    </form>
+    <a href="/profiles/1"><button>Back</button></a>
+    
+    
+    
+    </center>
+    
+    </body>
+    </html>

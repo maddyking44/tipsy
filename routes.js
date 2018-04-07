@@ -1,5 +1,6 @@
 const config = require('./knexfile').development
 const db = require('knex')(config)
+const dab = require('./db')
 const server = require('./server')
 const express = require('express')
 const router = express.Router()
@@ -24,40 +25,79 @@ router.get('/user/new', function (req, res) {
 //put new user data in db
 router.post('/user/new', function (req, res) {
     var userData = req.body
+    var languageArray = req.body.language
+    dab.insertLanguage(languageArray)
+        .then(id => {
+            db("profiles")
+                .insert({firstname: userData.firstname,
+                    lastname: userData.lastname,
+                    tagline: userData.tagline,
+                    email: userData.email,
+                    profilepic: userData.profilepic
+                })
+                .then(newProfile => {
+                   res.redirect('/profiles/' + newProfile)
+            })
+        })
+  
+})
 
-    db("profiles")
-      .insert(userData)
-      .then(newProfileId => {
-          console.log({newProfileId})
-          res.redirect('/')
 
-          //need to carry id through
-          //need to send languages data to languages db
-          //should redirect to /profiles/:id
+
+// User can view all profiles to match
+router.get('/profiles/:id', function (req, res) {
+    dab.getProfileByID(req.params.id)
+    .then(loggedInUser => {
+        db("profiles")
+        .select()
+        .then(allProfiles => {
+            res.render('allProfiles', {loggedInUser: loggedInUser, allProfiles: allProfiles})
+        })
     })
 })
 
-// View all users to match
-    router.get('/profiles/:id', function (req, res) {
-        db("profiles")
-        .where("id", req.params.id)
-        .select().first()
-        .then(loggedInUser => {
-            db("profiles")
-            .select()
-            .then(allProfiles => {
-                console.log({loggedInUser})
-                console.log(allProfiles)
-                res.render('allProfiles', {loggedInUser: loggedInUser, allProfiles: allProfiles})
-            })
+//user can view a particular profile
+router.get("/profiles/:id/view", function (req, res) {
+    var query = req.query
+    var id = req.params.id
+    dab.getProfileByQuery(query)
+    .then(profile=> {
+        res.render("oneProfile", {profile: profile, id:id})
+    })
+})
+
+//user can match with other users
+router.post("/profiles/:id/view", function (req, res) {
+    var id = req.params.id
+    var query = req.query
+    console.log({id})
+    console.log({query})
+    dab.getProfileByID(id)
+    .insert()
+    .then(subject => {
+        dab.getMatches(id, query)
+    })
+    res.redirect("/profiles/:id")
+})
+
+//user can view own profile
+router.get("/user/:id", function (req, res) {
+    dab.getProfileByID(req.params.id)
+        .then(user => {
+            console.log(user)
+            res.render("user", user)
         })
 })
 
-
-//render the form
+// user can edit own profile
 router.get('/user/:id/edit', function (req, res) {
-   res.render('form')
+   dab.getProfileByID(req.params.id)
+   .then(user => {
+       console.log(user)
+       res.render('form', user)
+   })
 })
+
 
 
 
