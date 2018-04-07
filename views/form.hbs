@@ -4,7 +4,7 @@
     </head>
 
     <body>
-        <form name="profile" method="post" action="/displayPage"  accept-charset="UTF-8" >
+        <form name="profile" method="post" action="/profiles"  accept-charset="UTF-8" >
             First name:
         <input name="firstname" type="text" placeholder="{{firstname}}"><br>
             Last name:
@@ -12,12 +12,10 @@
             Tag line:  
         <input name="tagline" type="text" placeholder="{{tagline}}" ><br>
             Language:
-            {{!-- fix this --}}
-        {{!-- <select name="languages">
-            <input type= "radio" value="english">English
-            <input type= "radio" value="spanish">Spanish
-            <input type= "radio" value="te_reo">Te reo Maori
-        </select><br> --}}
+            <input name="language" id="english" value="english" type="checkbox">English
+            <input name="language" id="spanish" value="spanish" type="checkbox">Spanish
+            <input name="language" id="te_reo" value="te_reo" type="checkbox">Te reo Maori
+       <br>
             Email:
         <input name="email" type="text" placeholder="{{email}}"><br>
             Profile picture URL: 

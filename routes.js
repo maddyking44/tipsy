@@ -89,15 +89,13 @@ router.post("/profiles/:id/view", function (req, res) {
                     console.log(queryNum + "is potential match")
                     console.log(success)
                     console.log(typeof success)
-                    if (typeof (success) === "object"){
+                    if (success[0]){
                         res.redirect("/success")}
-                    else console.log("Rwer rwaor")
-                    res.redirect("/profiles/" + req.params.id)
+                    else res.redirect("/profiles/" + req.params.id)
                      })
-        
-              })
-        })
-        
+                })
+            })
+     
     })
 
 //success page
@@ -128,16 +126,16 @@ router.get('/user/:id/edit', function (req, res) {
 
 
 //edit existing user data in db
-//     router.post('/displayPage', function (req, res) {
-//         var formData = req.body
+    router.post('/profiles', function (req, res) {
+        var formData = req.body
 
-//     db("profiles")
-//         .insert(formData)
-//         .then(newProfileId => {
-//             console.log({newProfileId})
-//             res.redirect('/displayPage/:id')
-//     })
-// })
+    db("profiles")
+        .insert(formData)
+        .then(newProfileId => {
+            var id = newProfileId[0]
+            res.redirect('/profiles/' + id)
+    })
+})
 
 
 module.exports = router
