@@ -24,17 +24,18 @@ function getProfileByTrickyID (id) {
 }
 
 function insertLanguage (languageArray) {
-    if (languageArray.length = 1) {
-    return db("languages")
-        .insert({english, spanish, te_reo})
-    }
+    if (typeof languageArray == "string") {
+        //single item is not in an array so .length won't work
+        console.log("working")
+        return db("languages")
+            .insert({english, spanish, te_reo})
+        }
     else {
-    var english = !!languageArray.find(language => language == 'english')
-    var spanish = !!languageArray.find(language => language == 'spanish')
-    var te_reo = !!languageArray.find(language => language == 'te_reo')
-
-    return db("languages")
-        .insert({english, spanish, te_reo})
+        var english = !!languageArray.find(language => language == 'english')
+        var spanish = !!languageArray.find(language => language == 'spanish')
+        var te_reo = !!languageArray.find(language => language == 'te_reo')
+        return db("languages")
+            .insert({english, spanish, te_reo})
     }
 }
 

@@ -26,6 +26,7 @@ router.get('/user/new', function (req, res) {
 router.post('/user/new', function (req, res) {
     var userData = req.body
     var languageArray = req.body.language
+    console.log(typeof languageArray)
     dab.insertLanguage(languageArray)
         .then(id => {
             db("profiles")
