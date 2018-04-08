@@ -1,5 +1,6 @@
-const config = require('./knexfile').development
-const db = require('knex')(config)
+var environment = process.env.NODE_ENV || 'development'
+var config = require('./knexfile')[environment]
+var db = require('knex')(config)
 const dab = require('./db')
 const server = require('./server')
 const express = require('express')
@@ -71,7 +72,7 @@ router.get("/profiles/:id/view", function (req, res) {
 router.post("/profiles/:id/view", function (req, res) {
     var id = req.params.id
 
-    // gets number from query in url
+    // gets the user id of the match profile from query in url
     var query = req.query
     var queryArray = Object.entries(query)
     var queryItem = queryArray[0][0]

@@ -2,21 +2,21 @@
         <title>TIPSY</title>
  </head>
 
- <body><center>
-    <h2>Welcome {{loggedInUser.firstname}}!</h2>
-    <h4><a href="/user/{{loggedInUser.id}}"><button>View profile</button></a></h4>
-    <h4><a href="/user/{{loggedInUser.id}}/edit"><button>Edit Profile</button></a></h4>
-    <br></center>
+ <body>
+    <div id="welcome"><center>
+        <h2>Welcome {{loggedInUser.firstname}}!</h2>
+        <h4><a href="/user/{{loggedInUser.id}}"><button>View profile</button></a></h4>
+        <h4><a href="/user/{{loggedInUser.id}}/edit"><button>Edit Profile</button></a></h4>
+        <br></center>
+    </div>
 
-    {{#each allProfiles}}
-
-        <div class="two columns"><center>
-            <p><a href="/profiles/1/view?id={{id}}">{{firstname}}</a></p> 
-            <p><a href="/profiles/1/view?id={{id}}">{{tagline}}</a></p>
-            <a href="/profiles/1/view?id={{id}}"><img src="{{profilepic}}" width="200px" height="200px"></a><br><br>
-       </center> </div>
-
-     {{/each}}
-    
+        {{#each allProfiles}}
+            <div class="two columns"><center>
+                <p><a href="/profiles/1/view?id={{id}}">{{firstname}}</a></p> 
+                <p><a href="/profiles/1/view?id={{id}}">{{tagline}}</a></p>
+                <a href="/profiles/1/view?id={{id}}"><img src="{{profilepic}}" width="200px" height="200px"></a><br><br>
+        </center> 
+        </div>
+        {{/each}}
 </body>
 
