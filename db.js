@@ -1,5 +1,6 @@
-const config = require('./knexfile').development
-const db = require('knex')(config)
+var environment = process.env.NODE_ENV || 'development'
+var config = require('./knexfile')[environment]
+var db = require('knex')(config)
 
 function getProfileByID (id) {
     // const conn = testDb || db
@@ -23,7 +24,6 @@ function getProfileByTrickyID (id) {
 }
 
 function insertLanguage (languageArray) {
-    console.log(languageArray)
     if (languageArray.length = 1) {
     return db("languages")
         .insert({english, spanish, te_reo})

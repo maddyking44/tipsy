@@ -1,23 +1,22 @@
-
-
-    <head>    
+<head>    
         <title>TIPSY</title>
-        <meta charset="UTF-8"/>
-        
  </head>
-    <body>
-<h2>Welcome {{loggedInUser.firstname}}.</h2>
-<h4><a href="/user/{{loggedInUser.id}}">View profile</a></h4>
-<h4><a href="/user/{{loggedInUser.id}}/edit">Edit Profile</a></h4>
-<br>
+
+ <body><center>
+    <h2>Welcome {{loggedInUser.firstname}}!</h2>
+    <h4><a href="/user/{{loggedInUser.id}}"><button>View profile</button></a></h4>
+    <h4><a href="/user/{{loggedInUser.id}}/edit"><button>Edit Profile</button></a></h4>
+    <br></center>
 
     {{#each allProfiles}}
-    <div><a href="/profiles/1/view?id={{id}}">{{firstname}}</a></div>
-     
-    <div><a href="/profiles/1/view?id={{id}}">{{tagline}}</a></div>
-    
-    <div><a href="/profiles/1/view?id={{id}}"><img src="{{profilepic}}" width="200px"></a></div>
+
+        <div class="two columns"><center>
+            <p><a href="/profiles/1/view?id={{id}}">{{firstname}}</a></p> 
+            <p><a href="/profiles/1/view?id={{id}}">{{tagline}}</a></p>
+            <a href="/profiles/1/view?id={{id}}"><img src="{{profilepic}}" width="200px" height="200px"></a><br><br>
+       </center> </div>
+
      {{/each}}
     
-    </body>
-    </html>
+</body>
+

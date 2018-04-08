@@ -8,7 +8,7 @@ const server = express()
 
 //Middleware
 server.engine('hbs', hbs({
-    // defaultLayout: 'main',
+    defaultLayout: 'main',
     extname: 'hbs'
   }))
   server.set('view engine', 'hbs')
