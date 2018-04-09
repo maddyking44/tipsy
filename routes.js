@@ -26,7 +26,6 @@ router.get('/user/new', function (req, res) {
 router.post('/user/new', function (req, res) {
     var userData = req.body
     var languageArray = req.body.language
-    console.log(typeof languageArray)
     dab.insertLanguage(languageArray)
         .then(id => {
             db("profiles")
@@ -109,27 +108,35 @@ router.get("/user/:id", function (req, res) {
         })
 })
 
-// user can edit own profile
+// user can view edit form to edit own profile
 router.get('/user/:id/edit', function (req, res) {
    dab.getProfileByID(req.params.id)
    .then(user => {
        res.render('form', user)
    })
 })
+//need to have form prefilled out instead of placeholder
 
 
-
-
-//edit existing user data in db
-    router.post('/profiles', function (req, res) {
-        var formData = req.body
-
-    db("profiles")
-        .insert(formData)
-        .then(newProfileId => {
-            var id = newProfileId[0]
-            res.redirect('/profiles/' + id)
-    })
+//user can edit their existing user data in db
+    router.post('/user/:id/edit', function (req, res) {
+        var userData = req.body
+        var languageArray = req.body.language
+        dab.getLanguageByID(req.params.id)
+            .then(user => {
+                dab.updateLanguage(languageArray, user.id)
+                    .then(id => {
+                        dab.getProfileByID (req.params.id)
+                                .update({firstname: userData.firstname,
+                                lastname: userData.lastname,
+                                tagline: userData.tagline,
+                                email: userData.email,
+                                profilepic: userData.profilepic})
+                                .then(userId => {
+                                res.redirect('/profiles/1')
+                                })
+                        })
+                })
 })
 
 

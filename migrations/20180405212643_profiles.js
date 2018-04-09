@@ -7,7 +7,6 @@ exports.up = function(knex, Promise) {
         table.string('tagline')
         table.string('email')
         table.string('profilepic')
-        table.string('language_id')
 })
 };
 

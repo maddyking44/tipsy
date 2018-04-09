@@ -26,7 +26,6 @@ function getProfileByTrickyID (id) {
 function insertLanguage (languageArray) {
     if (typeof languageArray == "string") {
         //single item is not in an array so .length won't work
-        console.log("working")
         return db("languages")
             .insert({english, spanish, te_reo})
         }
@@ -38,6 +37,35 @@ function insertLanguage (languageArray) {
             .insert({english, spanish, te_reo})
     }
 }
+
+function getLanguageByID (id) {
+    return db("profiles")
+     .join("languages", "profiles.id", "languages.user_id")
+     .where("profiles.id", id)
+     .select().first()
+}
+
+
+function updateLanguage (languageArray, id) {
+    if (typeof languageArray == "string") {
+        var english = languageArray.includes("english")
+        var spanish = languageArray.includes("spanish")
+        var te_reo = languageArray.includes("te_reo")
+        console.log(english)
+        return db("languages")
+            .where("user_id", id)
+            .update({english, spanish, te_reo})
+        }
+    else {
+        var english = !!languageArray.find(language => language == 'english')
+        var spanish = !!languageArray.find(language => language == 'spanish')
+        var te_reo = !!languageArray.find(language => language == 'te_reo')
+        return db("languages")
+            .where("user_id", id)
+            .update({english, spanish, te_reo})
+    }
+}
+
 
 function pushMatch (user, profile) {
     return db("matches")
@@ -56,6 +84,8 @@ module.exports = {
     getProfileByQuery,
     getProfileByTrickyID,
     insertLanguage,
+    getLanguageByID,
+    updateLanguage,
     pushMatch,
     checkMatches
 }
